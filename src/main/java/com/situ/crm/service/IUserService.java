@@ -10,6 +10,6 @@ public interface IUserService {
 	 * @param rows
 	 * @return
 	 */
-	EasyUIDataGrideResult findAll(Integer page,Integer rows);
+	EasyUIDataGrideResult findAll(Integer page,Integer rows,User user);
 
 }
