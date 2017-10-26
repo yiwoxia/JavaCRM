@@ -6,4 +6,14 @@
     <typeAliases>
        <package name="com.situ.crm.pojo"/>
     </typeAliases>
+    
+    <!-- 分页插件 -->
+    <plugins>
+    	<!-- com.github.pagehelper为PageHelper类所在包名 -->
+    	<plugin interceptor="com.github.pagehelper.PageInterceptor">
+       	 	<!-- 到底使用什么数据库,dialect方言也就是使用什么语言，在这使用的mysql -->
+        	<!-- <property name="dialect" value="mysql"/>最新版本相应有问题 -->
+        	<property name="param1" value="value1"/>
+		</plugin>
+    </plugins>
 </configuration>

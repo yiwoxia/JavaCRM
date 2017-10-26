@@ -23,8 +23,8 @@ public class UserController {
 	
 	@RequestMapping("/findAll")
 	@ResponseBody
-	private EasyUIDataGrideResult findAll(){
-		return userService.findAll();
+	private EasyUIDataGrideResult findAll(Integer page,Integer rows){
+		return userService.findAll(page,rows);
 	}
 
 }
