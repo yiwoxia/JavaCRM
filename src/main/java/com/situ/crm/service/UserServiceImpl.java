@@ -1,5 +1,7 @@
 package com.situ.crm.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +18,18 @@ public class UserServiceImpl implements IUserService {
 	private UserMapper userMapper;
 
 	@Override
-	public EasyUIDataGrideResult findAll(Integer page, Integer rows, User user) {
+	public EasyUIDataGrideResult findAll() {
 		EasyUIDataGrideResult result = new EasyUIDataGrideResult();
 		UserExample userExample = new UserExample();
 		//1.设置分页
-		PageHelper.startPage(page,rows);
+		int total = userMapper.countByExample(userExample);
 		//2.执行查询
+		List<User> rows = userMapper.selectByExample(userExample);
 		//rows(分页之后的数据)
-		return null;
+		
+		result.setTotal(total);
+		result.setRows(rows);
+		return result;
 	}
 	
 	

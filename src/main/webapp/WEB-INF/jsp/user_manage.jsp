@@ -9,7 +9,7 @@
 <body>
 	<table class="easyui-datagrid"  style="width:100%;height: 430px" fitColums="true" pagination="true" 
 				rownumbers="true" fitColumns="true"
-				data-options="singleSelect:true,collapsible:true,url:'${prc }/user/findAll.action',method:'get',toolbar:'#toolbar'">
+				data-options="singleSelect:true,collapsible:true,url:'${ctx }/user/findAll.action',method:'get',toolbar:'#toolbar'">
 			<thead>
 				<tr>
 					<th data-options="field:'id',width:80,align:'center'">编号</th>

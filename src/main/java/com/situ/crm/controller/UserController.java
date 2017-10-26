@@ -18,13 +18,13 @@ public class UserController {
 	
 	@RequestMapping("/index")
 	private String index(){
-		return "user_manager";
+		return "user_manage";
 	}
 	
 	@RequestMapping("/findAll")
 	@ResponseBody
-	private EasyUIDataGrideResult findAll(Integer page, Integer rows, User user){
-		return userService.findAll(page,rows,user);
+	private EasyUIDataGrideResult findAll(){
+		return userService.findAll();
 	}
 
 }
