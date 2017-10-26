@@ -6,12 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.situ.crm.common.EasyUIDataGrideResult;
+
 import com.situ.crm.pojo.User;
 import com.situ.crm.service.IUserService;
 
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController<ServerResponse> {
 	
 	@Autowired
 	private IUserService userService;
@@ -27,4 +28,11 @@ public class UserController {
 		return userService.findAll(page,rows,user);
 	}
 
+	//删除
+	@RequestMapping("delete")
+	@ResponseBody
+	public ServerResponse delete(String ids) {
+		return (ServerResponse) userService.delete(ids);
+	}
+	
 }

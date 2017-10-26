@@ -1,6 +1,8 @@
 package com.situ.crm.service;
 
+
 import com.situ.crm.common.EasyUIDataGrideResult;
+import com.situ.crm.common.ServerResponse;
 import com.situ.crm.pojo.User;
 
 public interface IUserService {
@@ -11,5 +13,15 @@ public interface IUserService {
 	 * @return
 	 */
 	EasyUIDataGrideResult findAll(Integer page,Integer rows,User user);
+	/**
+	 * 删除
+	 * @param ids
+	 * @return
+	 */
+
+	ServerResponse delete(String ids);
+
+
+	
 
 }

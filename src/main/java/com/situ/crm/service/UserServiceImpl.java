@@ -3,12 +3,15 @@ package com.situ.crm.service;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.omg.CORBA.ServerRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.situ.crm.common.EasyUIDataGrideResult;
+import com.situ.crm.common.ServerResponse;
 import com.situ.crm.dao.UserMapper;
 import com.situ.crm.pojo.CusDevPlanExample.Criteria;
 import com.situ.crm.pojo.User;
@@ -42,7 +45,19 @@ public class UserServiceImpl implements IUserService {
 		result.setRows(userList);
 		return result;
 	}
-	
+	/**
+	 * 删除
+	 */
+	@Override
+	public ServerResponse delete(String ids) {
+		String[] idArray = ids.split(",");
+		for (String id : idArray) {
+			userMapper.deleteByPrimaryKey(Integer.parseInt(id));
+		}
+		return ServerResponse.createSuccess("数据已经成功删除");
+	}
+
+
 	
 
 }
