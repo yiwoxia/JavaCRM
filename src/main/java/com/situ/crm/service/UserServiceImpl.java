@@ -3,9 +3,7 @@ package com.situ.crm.service;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.omg.CORBA.ServerRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -13,9 +11,9 @@ import com.github.pagehelper.PageInfo;
 import com.situ.crm.common.EasyUIDataGrideResult;
 import com.situ.crm.common.ServerResponse;
 import com.situ.crm.dao.UserMapper;
-import com.situ.crm.pojo.CusDevPlanExample.Criteria;
 import com.situ.crm.pojo.User;
 import com.situ.crm.pojo.UserExample;
+import com.situ.crm.pojo.UserExample.Criteria;
 import com.situ.crm.util.Util;
 
 @Service
@@ -32,7 +30,7 @@ public class UserServiceImpl implements IUserService {
 		PageHelper.startPage(page,rows);
 		//2.执行查询
 		//rows(分页之后的数据)
-		com.situ.crm.pojo.UserExample.Criteria createCriteria = userExample.createCriteria();
+		Criteria createCriteria = userExample.createCriteria();
 		String userName = user.getUserName();
 		if(StringUtils.isNotEmpty(user.getUserName())){
 			createCriteria.andUserNameLike(Util.formatLike(user.getUserName()));
