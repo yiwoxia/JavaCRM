@@ -1,4 +1,4 @@
-package com.situ.crm.service;
+package com.situ.crm.service.impl;
 
 import java.util.List;
 
@@ -14,6 +14,7 @@ import com.situ.crm.dao.UserMapper;
 import com.situ.crm.pojo.User;
 import com.situ.crm.pojo.UserExample;
 import com.situ.crm.pojo.UserExample.Criteria;
+import com.situ.crm.service.IUserService;
 import com.situ.crm.util.Util;
 
 @Service
@@ -21,7 +22,7 @@ public class UserServiceImpl implements IUserService {
 	
 	@Autowired
 	private UserMapper userMapper;
-
+	// 根据分页信息返回所有数据
 	@Override
 	public EasyUIDataGrideResult findAll(Integer page,Integer rows,User user) {
 		EasyUIDataGrideResult result = new EasyUIDataGrideResult();
@@ -54,8 +55,30 @@ public class UserServiceImpl implements IUserService {
 		}
 		return ServerResponse.createSuccess("数据已经成功删除");
 	}
+	/**
+	 * 添加
+	 */
+	@Override
+	public ServerResponse add(User user) {
+		
+		if(userMapper.insert(user) > 0 ){
+			return ServerResponse.createSuccess("添加成功！");
+		}
+
+		return ServerResponse.createError("添加失败！");
+	}
+	/**
+	 * 修改
+	 */
+	@Override
+	public ServerResponse update(User user) {
+		if (userMapper.updateByPrimaryKey(user) > 0) {
+			return ServerResponse.createSuccess("修改成功! ");
+			}
+			return ServerResponse.createError("修改失败!");
+		}
+	}
 
 
 	
 
-}

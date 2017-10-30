@@ -20,6 +20,18 @@ public interface IUserService {
 	 */
 
 	ServerResponse delete(String ids);
+	/**
+	 * 添加
+	 * @param user
+	 * @return
+	 */
+	ServerResponse add(User user);
+	/**
+	 * 修改
+	 * @param user
+	 * @return
+	 */
+	ServerResponse update(User user);
 
 
 	
