@@ -7,105 +7,136 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	/* 查找 */
-	function doSearch(value){
-		$("#datagrid").datagrid("load",{
-			'name':value
-		})
-	}
+
+$(function(){
+	/*展示数据的datagrid表格*/
+	$("#datagrid").datagrid({
+		url:'${ctx}/user/findAll.action',
+		method:'get',
+		fit:true,
+		singleSelect:false,
+		toolbar:'#toolbar',
+		rownumbers:true,
+		fitColumns:true,
+		pagination:true,
+		columns:[[    
+		     {field:'cb',checkbox:true,align:'center'},    
+		     {field:'id',title:'编号',width:80,align:'center'},    
+		     {field:'name',title:'用户名',width:100,align:'center'},    
+		     {field:'password',title:'密码',width:80,align:'center'},    
+		     {field:'trueName',title:'真实姓名',width:80,align:'center'},    
+		     {field:'email',title:'邮件',width:100,align:'center'},    
+		     {field:'phone',title:'联系电话',width:100,align:'center'},    
+		     {field:'roleName',title:'角色',width:100,align:'center'}    
+		]]  
+	});
 	
-	/* 删除 */
-	function doDelete(){
-		var ids = Util.getSelectionsIds("#datagrid");
-		if (ids.length == 0) {
-			$.messager.alert("系统提示", "请选择要删除的数据");
-			return;
-		}
-		$.messager.confirm("系统提示", "您确认要删除么", function(r){
-			if (r){
-				$.post(
-					"${ctx}/user/delete.action",
-					{ids:ids}, 
-					function(result) {
-						$.messager.alert("系统提示", result.msg);
-						if(result.status == Util.SUCCESS) {
-							$("#datagrid").datagrid("reload");
-						}
-					},
-					"json"
-				);
+	/*添加和修改弹出的dialog */
+	$("#dialog").dialog({
+		closed:'true',
+		buttons:[
+			{
+				text:'保存',
+				iconCls:'icon-ok',
+				handler:function(){
+					doSave();
+				}
+			},
+			{
+				text:'关闭',
+				iconCls:'icon-cancel',
+				handler:function(){
+					$("#dialog").dialog("close");
+				}
 			}
-		})
-	}
-	
-	var url;
-	/* 打开添加dialog */
-	function openAddDialog() {
-		$("#dialog").dialog("open").dialog("setTitle","添加信息");
-		url = "${ctx}/user/add.action";
-		$('#form').form("clear");
+			
+		]
 		
+	});
+});
+
+/*添加或修改的dialog */
+function doSave() {
+	$('#form').form('submit', {    
+	    url:url,    
+	    onSubmit: function(){    
+	        // do some check    
+	        if($("#roleName").combobox("getValue") == "") {
+	        	$.messager.alert("系统提示", "请选择用户角色");
+	        	return false;
+	        }
+	        //validate none 做表单字段验证，当所有字段都有效的时候返回true。该方法使用validatebox(验证框)插件。 
+	        // return false to prevent submit;  
+	        return $(this).form("validate");
+	    },    
+	    success:function(data){//正常返回ServerResponse
+	    	//alert(data);
+	    	var data = eval('(' + data + ')');
+	    	if(data.status == Util.SUCCESS) {
+	    		$.messager.alert("系统提示", data.msg);
+	    		$("#dialog").dialog("close");
+	    		$("#datagrid").datagrid("reload");
+	    	}
+	    }    
+	});  
+}
+/* 查找 */
+function doSearch(value){
+	$("#datagrid").datagrid("load",{
+		'name':value
+	})
+}
+
+/* 删除 */
+function doDelete(){
+	var ids = Util.getSelectionsIds("#datagrid");
+	if (ids.length == 0) {
+		$.messager.alert("系统提示", "请选择要删除的数据");
+		return;
 	}
-	/* 打开修改dialog */
-	function openUpdateDialog() {
-		var selections = $("#datagrid").datagrid("getSelections");
-		if(selections.length == 0) {
-			$.messager.alert("系统提示", "请选择要修改的数据");
-			return;
+	$.messager.confirm("系统提示", "您确认要删除么", function(r){
+		if (r){
+			$.post(
+				"${ctx}/user/delete.action",
+				{ids:ids}, 
+				function(result) {
+					$.messager.alert("系统提示", result.msg);
+					if(result.status == Util.SUCCESS) {
+						$("#datagrid").datagrid("reload");
+					}
+				},
+				"json"
+			);
 		}
-		var row = selections[0];
-		$("#dialog").dialog("open").dialog("setTitle","修改信息");
-		url = "${ctx}/user/update.action";
-		$('#form').form("load", row);
-	}
+	})
+}
+
+var url;
+/* 打开添加dialog */
+function openAddDialog() {
+	$("#dialog").dialog("open").dialog("setTitle","添加信息");
+	url = "${ctx}/user/add.action";
+	$('#form').form("clear");
 	
-	function closeDialog(){
-		 $("#dialog").dialog("close");
+}
+/* 打开修改dialog */
+function openUpdateDialog() {
+	var selections = $("#datagrid").datagrid("getSelections");
+	if(selections.length == 0) {
+		$.messager.alert("系统提示", "请选择要删除的数据");
+		return;
 	}
-	
-	function doSave(){
-		$('#form').form('submit', {    
-		    url:url,    
-		    onSubmit: function(){    
-		        // do some check    
-		        if($("#roleName").combobox("getValue") == "") {
-		        	$.messager.alert("系统提示", "请选择用户角色");
-		        	return false;
-		        }
-		        //validate none 做表单字段验证，当所有字段都有效的时候返回true。该方法使用validatebox(验证框)插件。 
-		        // return false to prevent submit;  
-		        return $(this).form("validate");
-		    },    
-		    success:function(data){//正常返回ServerResponse
-		    	var data = eval('(' + data + ')');
-		    	if(data.status == Util.SUCCESS) {
-		    		$.messager.alert("系统提示", data.msg);
-		    		$("#dialog").dialog("close");
-		    		$("#datagrid").datagrid("reload");
-		    	}
-		    }    
-		});  
-	}
+	var row = selections[0];
+	$("#dialog").dialog("open").dialog("setTitle","修改信息");
+	url = "${ctx}/user/update.action";
+	$('#form').form("load", row);
+}
+
 	
 </script>
 </head>
 <body>
-	<table id="datagrid" class="easyui-datagrid" rownumbers="true" fitColumns="true"
-		pagination="true"
-		data-options="fit:true,singleSelect:false,url:'${ctx}/user/findAll.action',method:'get',toolbar:'#toolbar'">
-		<thead>
-			<tr>
-				<th data-options="field:'cb',checkbox:true,align:'center'"></th>
-				<th data-options="field:'id',width:80,align:'center'">编号</th>
-				<th data-options="field:'name',width:100,align:'center'">用户名</th>
-				<th data-options="field:'password',width:80,align:'center'">密码</th>
-				<th data-options="field:'trueName',width:80,align:'center'">真实姓名</th>
-				<th data-options="field:'email',width:100,align:'center'">邮件</th>
-				<th data-options="field:'phone',width:100,align:'center'">联系电话</th>
-				<th data-options="field:'roleName',width:100,align:'center'">角色</th>
-			</tr>
-		</thead>
-	</table>
+	<table id="datagrid"></table>
 	
 	<!-- toolbar 开始 -->
 	<div id="toolbar">

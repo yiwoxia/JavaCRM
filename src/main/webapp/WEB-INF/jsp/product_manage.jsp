@@ -10,7 +10,7 @@
 	/* 查找 */
 	function doSearch(value){
 		$("#datagrid").datagrid("load",{
-			'productName':value
+			'name':value
 		})
 	}
 	
@@ -62,7 +62,7 @@
 	function closeDialog(){
 		 $("#dialog").dialog("close");
 	}
-	
+	/*添加或修改的dialog */
 	function doSave(){
 		$('#form').form('submit', {    
 		    url:url,    
@@ -83,26 +83,61 @@
 		});  
 	}
 	
+	
+	
+	
+	$(function(){
+		/*展示数据的datagrid表格*/
+		$("#datagrid").datagrid({
+			url:'${ctx}/product/findAll.action',
+			method:'get',
+			fit:true,
+			singleSelect:false,
+			toolbar:'#toolbar',
+			rownumbers:true,
+			fitColumns:true,
+			pagination:true,
+			columns:[[    
+			     {field:'cb',checkbox:true,align:'center'},    
+			     {field:'id',title:'编号',width:80,align:'center'},    
+			     {field:'name',title:'产品名称',width:100,align:'center'},    
+			     {field:'model',title:'型号',width:80,align:'center'},    
+			     {field:'unit',title:'单位',width:80,align:'center'},    
+			     {field:'price',title:'价格',width:80,align:'center'},    
+			     {field:'stock',title:'库存',width:80,align:'center'},    
+			     {field:'remark',title:'备注',width:80,align:'center'},    
+			]]  
+		});
+		
+		/*添加和修改弹出的dialog */
+		$("#dialog").dialog({
+			closed:'true',
+			buttons:[
+				{
+					text:'保存',
+					iconCls:'icon-ok',
+					handler:function(){
+						doSave();
+					}
+				},
+				{
+					text:'关闭',
+					iconCls:'icon-cancel',
+					handler:function(){
+						$("#dialog").dialog("close");
+					}
+				}
+				
+			]
+			
+		});
+	});
+	
+	
 </script>
 </head>
 <body>
-	<table id="datagrid" class="easyui-datagrid" rownumbers="true" fitColumns="true"
-		pagination="true"
-		data-options="fit:true,singleSelect:false,url:'${ctx}/product/findAll.action',method:'get',toolbar:'#toolbar'">
-		<thead>
-			<tr>
-				<th data-options="field:'cb',checkbox:true,align:'center'"></th>
-				<th data-options="field:'id',width:80,align:'center'">编号</th>
-				<th data-options="field:'name',width:100,align:'center'">产品名称</th>
-				<th data-options="field:'model',width:80,align:'center'">型号</th>
-				<th data-options="field:'unit',width:80,align:'center'">单位</th>
-				<th data-options="field:'price',width:100,align:'center'">价格</th>
-				<th data-options="field:'stock',width:100,align:'center'">库存</th>
-				<th data-options="field:'remark',width:100,align:'center'">备注</th>
-			</tr>
-		</thead>
-	</table>
-	
+	<table id="datagrid"></table>
 	<!-- toolbar 开始 -->
 	<div id="toolbar">
 		<a class="easyui-linkbutton" href="javascript:openAddDialog()" iconCls="icon-add">添加</a>
