@@ -39,6 +39,11 @@ public interface IUserService {
 	 * @return
 	 */
 	List<User> findRoleName();
+	/**
+	 * 查找客户经理
+	 * @return LinkedList<SaleChance>
+	 */
+	List<User> findAssignMan();
 	
 
 

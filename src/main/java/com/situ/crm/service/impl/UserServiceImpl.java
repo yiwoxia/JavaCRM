@@ -91,6 +91,20 @@ public class UserServiceImpl implements IUserService {
 		// TODO Auto-generated method stub
 		return userMapper.findRoleName();
 	}
+	/**
+	 * 查找客户经理
+	 */
+	@Override
+	public List<User> findAssignMan() {
+		UserExample example = new UserExample();
+		Criteria createCriteria = example.createCriteria();
+		createCriteria.andRoleNameEqualTo("客户经理");
+		List<User> list = userMapper.selectByExample(example);
+		User user = new User();
+		user.setRoleName(null);
+		list.add(0, user);
+		return list;
+	}
 	}
 
 
