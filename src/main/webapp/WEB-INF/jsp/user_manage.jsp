@@ -83,7 +83,9 @@ function doSave() {
 /* 查找 */
 function doSearch(value){
 	$("#datagrid").datagrid("load",{
-		'name':value
+		'name':$("#name").val(),
+		'trueName':$("#trueName").val(),
+		'roleName':$("#roleName").val()
 	})
 }
 
@@ -123,7 +125,7 @@ function openAddDialog() {
 function openUpdateDialog() {
 	var selections = $("#datagrid").datagrid("getSelections");
 	if(selections.length == 0) {
-		$.messager.alert("系统提示", "请选择要删除的数据");
+		$.messager.alert("系统提示", "请选择要修改的数据");
 		return;
 	}
 	var row = selections[0];
@@ -140,13 +142,29 @@ function openUpdateDialog() {
 	
 	<!-- toolbar 开始 -->
 	<div id="toolbar">
+	  <div>
 		<a class="easyui-linkbutton" href="javascript:openAddDialog()" iconCls="icon-add">添加</a>
 		<a class="easyui-linkbutton" href="javascript:openUpdateDialog()" iconCls="icon-edit">修改</a>
 		<a class="easyui-linkbutton" href="javascript:doDelete()" iconCls="icon-remove">删除</a>
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		<input class="easyui-searchbox" data-options="prompt:'用户名',searcher:doSearch" style="width:150px"></input>
+		<!-- &nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="easyui-searchbox" data-options="prompt:'用户名',searcher:doSearch" style="width:150px"></input> -->
+	</div>
+		<div >
+			        角色：<input type="text" id="roleName" class="easyui-combobox"
+						 data-options="
+						 	url:'${ctx}/user/findRoleName.action',
+						 	valueField: 'roleName',
+						 	textField: 'roleName',
+						 	panelHeight:'auto',
+						 	editable:false  "/>
+			        用户名：<input type="text" id="name"></input>
+			        真实姓名：<input type="text" id="trueName"></input>
+		 	  <a href="javascript:doSearch();" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
+		</div>
 	</div>
 	<!-- toolbar 结束 -->
+	
+	
 	
 	<!-- 添加和修改的dialog 开始 -->
 	<div id="dialog" class="easyui-dialog" closed="true"

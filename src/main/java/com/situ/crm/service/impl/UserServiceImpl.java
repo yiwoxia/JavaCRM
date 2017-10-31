@@ -33,6 +33,12 @@ public class UserServiceImpl implements IUserService {
 		//rows(分页之后的数据)
 		Criteria createCriteria = userExample.createCriteria();
 		String userName = user.getName();
+		if(StringUtils.isNotEmpty(user.getRoleName())){
+			createCriteria.andRoleNameLike(Util.formatLike(user.getRoleName()));
+		}
+		if(StringUtils.isNotEmpty(user.getTrueName())){
+			createCriteria.andTrueNameLike(Util.formatLike(user.getTrueName()));
+		}
 		if(StringUtils.isNotEmpty(user.getName())){
 			createCriteria.andNameLike(Util.formatLike(user.getName()));
 		}
@@ -77,6 +83,14 @@ public class UserServiceImpl implements IUserService {
 			}
 			return ServerResponse.createError("修改失败!");
 		}
+	/**
+	 * 返回数据字典名字去重之后的列表
+	 */
+	@Override
+	public List<User> findRoleName() {
+		// TODO Auto-generated method stub
+		return userMapper.findRoleName();
+	}
 	}
 
 

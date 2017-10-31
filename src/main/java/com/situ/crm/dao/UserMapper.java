@@ -27,4 +27,22 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    /**
+     * 返回数据字典名字去重之后的列表
+     * @return
+     */
+	List<User> findRoleName();
+	/**
+	 * 检测用户名是否存在
+	 * @param user
+	 * @return
+	 */
+	User checkUser(User user);
+	/**
+	 * 修改密码
+	 * @param user
+	 * @return
+	 */
+	int updateUserByName(User user);
 }

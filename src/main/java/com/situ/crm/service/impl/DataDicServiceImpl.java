@@ -76,7 +76,9 @@ public class DataDicServiceImpl implements IDataDicService {
 			}
 			return ServerResponse.createError("修改失败!");
 		}
-	//查询下拉列表内容
+	/**
+	 * 返回数据字典名字去重之后的列表
+	 */
 	@Override
 	public List<DataDic> findDataDicName() {
 		// TODO Auto-generated method stub

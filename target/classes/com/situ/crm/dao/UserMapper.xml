@@ -240,4 +240,18 @@
       role_name = #{roleName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 返回数据字典名字去重之后的列表  -->
+  <select id="findRoleName" resultMap="BaseResultMap">
+  	select distinct role_name from user
+  </select>
+  
+  <!-- 检测用户是否存在 -->
+  <select id="checkUser" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/> from user where name=#{name} and password=#{password};
+  </select>
+  <!-- 修改密码 -->
+  <update id="updateUserByName" parameterType="com.situ.crm.pojo.User">
+		update user set password=#{password} where name=#{name}
+  </update>                     
 </mapper>

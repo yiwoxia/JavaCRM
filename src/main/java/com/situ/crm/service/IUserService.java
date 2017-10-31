@@ -1,6 +1,8 @@
 package com.situ.crm.service;
 
 
+import java.util.List;
+
 import com.situ.crm.common.EasyUIDataGrideResult;
 import com.situ.crm.common.ServerResponse;
 import com.situ.crm.pojo.User;
@@ -32,6 +34,12 @@ public interface IUserService {
 	 * @return
 	 */
 	ServerResponse update(User user);
+	/**
+	 *  返回数据字典名字去重之后的列表
+	 * @return
+	 */
+	List<User> findRoleName();
+	
 
 
 	

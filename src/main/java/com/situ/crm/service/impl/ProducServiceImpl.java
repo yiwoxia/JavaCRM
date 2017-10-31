@@ -36,6 +36,9 @@ public class ProducServiceImpl implements IProductService {
 		if(StringUtils.isNotEmpty(product.getName())){
 			createCriteria.andNameLike(Util.formatLike(product.getName()));
 		}
+		if (StringUtils.isNotEmpty(product.getModel())) {
+			createCriteria.andModelLike(Util.formatLike(product.getModel()));
+		}
 		List<Product> productList = productMapper.selectByExample(productExample);
 		//4,取分页后的结果
 		PageInfo<Product> pageInfo = new PageInfo<>(productList);
