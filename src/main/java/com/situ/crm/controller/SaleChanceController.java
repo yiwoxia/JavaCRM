@@ -47,7 +47,7 @@ public class SaleChanceController {
 	@RequestMapping("/findAll")
 	@ResponseBody
 	public EasyUIDataGrideResult findAll(Integer page, Integer rows, SaleChance saleChance,Date beginTime, Date endTime) {
-		System.out.println(saleChance + " +++++++++++++ "+ beginTime + "+++++++++=" +endTime);
+		System.out.println("page:"+page+"rows:"+rows+"saleChance:"+saleChance+"beginTime:"+beginTime+"endTime"+endTime);
 		return saleChanceService.findAll(page, rows, saleChance, beginTime, endTime);
 	}
 	//根据id删除
@@ -60,7 +60,6 @@ public class SaleChanceController {
 	@RequestMapping("/add")
 	@ResponseBody
 	public ServerResponse add(SaleChance saleChance) {
-		System.out.println(saleChance);
 		return saleChanceService.add(saleChance);
 	}
 	//更新

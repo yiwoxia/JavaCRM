@@ -20,18 +20,19 @@ public class LoginController {
 	@Autowired
 	private ILoginService loginService;
 	
+	//跳转到登录界面
 	@RequestMapping("/log")
 	private String index(){
 		return "login";
 		
 	}
 	
-	
+	//判断登陆是否成功和或取用户名密码
 	@RequestMapping(value="/login")
 	@ResponseBody
 	public ServerResponse login(String name, String password,Model model, HttpServletRequest request){
 		User user = loginService.logi(name,password, request);
-		System.out.println(user+"00000000000000000000");
+		System.out.println(user+"-------------------------------------------------------------------");
 		if (user != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("backuser", user);
@@ -44,18 +45,21 @@ public class LoginController {
 		
 	}
 	
+	//修改密码
 	@RequestMapping(value="/updatePassword")
 	@ResponseBody
 	public ServerResponse updatePassword(User user){
 		return loginService.updateUserByName(user);
 	}
 	
+	//检测用户名
 	@RequestMapping(value="/checkName")
 	@ResponseBody
 	public Boolean cheackName(String name){
 		return loginService.checkUser(name);
 	}
 	
+	//检测密码
 	@RequestMapping(value="/checkPassword")
 	@ResponseBody
 	public Boolean cheackPassword(String password,String name){

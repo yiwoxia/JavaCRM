@@ -48,26 +48,27 @@ public class CustomerPlanController {
 	@RequestMapping("/findAll")
 	@ResponseBody
 	public EasyUIDataGrideResult findAll(Integer page, Integer rows, SaleChance saleChance,Date beginTime, Date endTime) {
-		System.out.println(saleChance + " +++++++++++++ "+ beginTime + "+++++++++=" +endTime);
 		return customerPlanService.findAll(page, rows, saleChance, beginTime, endTime);
 	}
 	//删除
 	@RequestMapping("/delete")
 	@ResponseBody
 	public ServerResponse delete(String ids) {
+		System.out.println("删除"+ids);
 		return customerPlanService.delete(ids);
 	}
 	//添加
 	@RequestMapping("/add")
 	@ResponseBody
 	public ServerResponse add(SaleChance saleChance) {
-		System.out.println(saleChance);
+		System.out.println("添加"+saleChance);
 		return customerPlanService.add(saleChance);
 	}
 	//更新
 	@RequestMapping("/update")
 	@ResponseBody
 	public ServerResponse update(SaleChance saleChance) {
+		System.out.println("修改"+saleChance);
 		return customerPlanService.update(saleChance);
 	}
 	// 查找客户经理

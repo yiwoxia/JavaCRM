@@ -21,27 +21,13 @@
 			columns:[[    
 			     {field:'cb',checkbox:true,align:'center'},    
 			     {field:'id',title:'编号',width:80,align:'center'},    
-			    /*  {field:'chanceSource',title:'数据机会来源名',width:80,align:'center'} ,*/    
 			     {field:'customerName',title:'客户名称',width:100,align:'center'},    
-			     /* {field:'successRate',title:'成功几率',width:80,align:'center'},  */   
 			     {field:'overview',title:'概要',width:100,align:'center'},    
 			     {field:'linkMan',title:'联系人',width:100,align:'center'},    
 			     {field:'linkPhone',title:'联系电话',width:100,align:'center'},    
-			     /* {field:'description',title:'机会描述',width:100,align:'center'}, */    
 			     {field:'createMan',title:'创建人',width:100,align:'center'},    
 			     {field:'createTime',title:'创建时间',width:100,align:'center'},    
-			    /*  {field:'assignMan',title:'指派人',width:70,align:'center'},    
-			     {field:'assignTime',title:'指派时间',width:100,align:'center'}, */   
-			    /*  {field:'status',title:'分配状态',width:70,align:'center',
-			    	formatter:function(value,row,index){
-			    		if (value==1) {
-							return "已分配";
-						} else {
-							return "未分配";
-						}
-			    	}
-			     },     */ 
-			    {field:'devResult',title:'开发中 ',width:100,align:'center',
+				 {field:'devResult',title:'开发中 ',width:100,align:'center',
 			    	 formatter:function(value,row,index){
 				    		if (value==0) {
 								return "未开发";
@@ -87,13 +73,6 @@
 		$('#form').form('submit', {    
 		    url:url,    
 		    onSubmit: function(){    
-		        // do some check    
-		       /*  if($("#saleChanceName").combobox("getValue") == "") {
-		        	$.messager.alert("系统提示", "请选择用户角色");
-		        	return false;
-		        } */
-		        //validate none 做表单字段验证，当所有字段都有效的时候返回true。该方法使用validatebox(验证框)插件。 
-		        // return false to prevent submit;  
 		        return $(this).form("validate");
 		    },    
 		    success:function(data){//正常返回ServerResponse
@@ -193,12 +172,12 @@
 	// 格式化时间
 	function getCurrentDateTime () {
 	    var date = new Date();//Mon Oct 30 2017 22:08:37 GMT+0800
-	    var year=date.getFullYear();
-	    var month=date.getMonth()+1;
-	    var day=date.getDate();
-	    var hours=date.getHours();
-	    var minutes=date.getMinutes();
-	    var seconds=date.getSeconds();
+	    var year=date.getFullYear();//年
+	    var month=date.getMonth()+1;//月
+	    var day=date.getDate();//天
+	    var hours=date.getHours();//小时
+	    var minutes=date.getMinutes();//分钟
+	    var seconds=date.getSeconds();//秒
 	    // 2017-01-01 02:23:06   yyyy-MM-dd hh:mm:ss
 	    return year+"-"+this.formatZero(month)+"-"+this.formatZero(day)+" "+this.formatZero(hours)+":"+this.formatZero(minutes)+":"+this.formatZero(seconds);
 	}
@@ -211,29 +190,21 @@
 	<!-- toolbar 开始 -->
 	<div id="toolbar">
 		<div>
-			<%-- 数据字典名：<input type="text" id="saleChanceName" class="easyui-combobox"
-					 data-options="
-					 	url:'${ctx}/customerPlan/findSaleChanceName.action',
-					 	valueField: 'saleChanceName',
-					 	textField: 'saleChanceName',
-					 	panelHeight:'auto',
-					 	editable:false,
-					 	blankText:'qingxuanze' "/> --%>
-		       	客户名称：<input type="text" id="s_customerNameId" name="customerName" style="width: 100px"/>&nbsp;&nbsp;&nbsp;
-		       	联系人：<input type="text" id="s_linkManId" name="linkMan" style="width: 100px" />&nbsp;&nbsp;&nbsp;
-		       	创建人：<input type="text" id="s_createManId" name="createMan" style="width: 100px" />&nbsp;&nbsp;&nbsp;
-		       	开发状态：
-		       	<select id="s_devResultId" name="devResult" class="easyui-combobox" style="width:90px;">   
-				    <option value="">--请选择--</option>
-				    <option value="0">未开发</option>   
-				    <option value="1" >开发中</option>   
-				    <option value="2" >开发成功</option>   
-				    <option value="3" >开发失败</option>   
-				</select><br>
-				开始时间：<input id="s_beginTimeId" class="easyui-datebox" name="beginTime" data-options="sharedCalendar:'#cc'">&nbsp;&nbsp;&nbsp;
-				结束时间：<input id="s_endTimeId"  class="easyui-datebox" name="endTime" data-options="sharedCalendar:'#cc'">&nbsp;&nbsp;&nbsp;
-				<div id="cc" class="easyui-calendar"></div>
-		  <a href="javascript:doSearch();" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
+	       	客户名称：<input type="text" id="s_customerNameId" name="customerName" style="width: 100px"/>&nbsp;&nbsp;&nbsp;
+	       	联系人：<input type="text" id="s_linkManId" name="linkMan" style="width: 100px" />&nbsp;&nbsp;&nbsp;
+	       	创建人：<input type="text" id="s_createManId" name="createMan" style="width: 100px" />&nbsp;&nbsp;&nbsp;
+	       	开发状态：
+	       	<select id="s_devResultId" name="devResult" class="easyui-combobox" style="width:90px;">   
+			    <option value="">--请选择--</option>
+			    <option value="0">未开发</option>   
+			    <option value="1" >开发中</option>   
+			    <option value="2" >开发成功</option>   
+			    <option value="3" >开发失败</option>   
+			</select><br>
+			开始时间：<input id="s_beginTimeId" class="easyui-datebox" name="beginTime" data-options="sharedCalendar:'#cc'">&nbsp;&nbsp;&nbsp;
+			结束时间：<input id="s_endTimeId"  class="easyui-datebox" name="endTime" data-options="sharedCalendar:'#cc'">&nbsp;&nbsp;&nbsp;
+			<div id="cc" class="easyui-calendar"></div>
+	 		 <a href="javascript:doSearch();" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
 		</div>
 	</div>
 	<!-- toolbar 结束 -->
@@ -265,8 +236,7 @@
 				</tr>
 				<tr>
 					<td>机会描述：</td>
-					<td colspan="3"><!-- <input type="textarea" id="saleChanceValue" name="saleChanceValue" style="width: 300px;height: 60px" class="" required="true"/><font color="red">*</font> -->
-						<!-- <textarea rows="3" cols="50" id="descriptionId" name="description"></textarea> -->
+					<td colspan="3">
 						<input class="easyui-textbox" id="descriptionId" name="description" data-options="multiline:true" style="width:250px;height:60px">
 					</td>
 				</tr>
@@ -281,8 +251,7 @@
 				<tr>
 					<td>指派给：</td>
 					<td><input type="text" id="assignManId" name="assignMan" class="easyui-combobox"
-					 data-options="
-					 	url:'${ctx}/customerPlan/findAssignMan.action',
+					 	data-options=" url:'${ctx}/customerPlan/findAssignMan.action',
 					 	valueField: 'trueName',
 					 	textField: 'trueName',
 					 	panelHeight:'auto',

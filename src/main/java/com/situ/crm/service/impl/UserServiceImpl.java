@@ -105,7 +105,7 @@ public class UserServiceImpl implements IUserService {
 		list.add(0, user);
 		return list;
 	}
-	}
+}
 
 
 	

@@ -180,12 +180,12 @@
 	// 格式化时间
 	function getCurrentDateTime () {
 	    var date = new Date();//Mon Oct 30 2017 22:08:37 GMT+0800
-	    var year=date.getFullYear();
-	    var month=date.getMonth()+1;
-	    var day=date.getDate();
-	    var hours=date.getHours();
-	    var minutes=date.getMinutes();
-	    var seconds=date.getSeconds();
+	    var year=date.getFullYear();//年
+	    var month=date.getMonth()+1;//月
+	    var day=date.getDate();//天
+	    var hours=date.getHours();//小时
+	    var minutes=date.getMinutes();//分钟
+	    var seconds=date.getSeconds();//秒
 	    // 2017-01-01 02:23:06   yyyy-MM-dd hh:mm:ss
 	    return year+"-"+this.formatZero(month)+"-"+this.formatZero(day)+" "+this.formatZero(hours)+":"+this.formatZero(minutes)+":"+this.formatZero(seconds);
 	}
@@ -203,14 +203,6 @@
 			<a class="easyui-linkbutton" href="javascript:doDelete()" iconCls="icon-remove">删除</a>
 		</div>
 		<div>
-			<%-- 数据字典名：<input type="text" id="saleChanceName" class="easyui-combobox"
-					 data-options="
-					 	url:'${ctx}/saleChance/findSaleChanceName.action',
-					 	valueField: 'saleChanceName',
-					 	textField: 'saleChanceName',
-					 	panelHeight:'auto',
-					 	editable:false,
-					 	blankText:'qingxuanze' "/> --%>
 		       	客户名称：<input type="text" id="s_customerNameId" name="customerName" style="width: 100px"/>&nbsp;&nbsp;&nbsp;
 		       	联系人：<input type="text" id="s_linkManId" name="linkMan" style="width: 100px" />&nbsp;&nbsp;&nbsp;
 		       	创建人：<input type="text" id="s_createManId" name="createMan" style="width: 100px" />&nbsp;&nbsp;&nbsp;
@@ -255,14 +247,13 @@
 				</tr>
 				<tr>
 					<td>机会描述：</td>
-					<td colspan="3"><!-- <input type="textarea" id="saleChanceValue" name="saleChanceValue" style="width: 300px;height: 60px" class="" required="true"/><font color="red">*</font> -->
-						<!-- <textarea rows="3" cols="50" id="descriptionId" name="description"></textarea> -->
+					<td colspan="3">
 						<input class="easyui-textbox" id="descriptionId" name="description" data-options="multiline:true" style="width:250px;height:60px">
 					</td>
 				</tr>
 				<tr>
 					<td>创建人：</td>
-					<td><input type="text" id="createManId" name="createMan"  class="easyui-textbox" required="true"/><font color="red">*</font></td>
+					<td><input type="text" id="createManId" name="createMan"  value="${backuser.name}" class="easyui-textbox" required="true"/><font color="red">*</font></td>
 					<td>创建时间：</td>
 					<td>
 					<input  id="createTimeId" name="createTime"  type= "text" class= "easyui-datebox" required ="required"/>

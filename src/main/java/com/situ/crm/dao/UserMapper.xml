@@ -253,5 +253,6 @@
   <!-- 修改密码 -->
   <update id="updateUserByName" parameterType="com.situ.crm.pojo.User">
 		update user set password=#{password} where name=#{name}
-  </update>                     
+  </update>    
+           
 </mapper>

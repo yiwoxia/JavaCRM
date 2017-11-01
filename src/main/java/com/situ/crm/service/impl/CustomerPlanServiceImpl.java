@@ -89,14 +89,4 @@ public class CustomerPlanServiceImpl implements ICustomerPlanService{
 		return ServerResponse.createError("修改失败!");
 	}
 
-
-	/*@Override
-	public List<SaleChance> findSaleChanceName() {
-		LinkedList<SaleChance> findSaleChanceName = saleChanceMapper.findSaleChanceName();
-		SaleChance saleChance = new SaleChance();
-		saleChance.setSaleChanceName(null);
-		findSaleChanceName.addFirst(saleChance);
-		return findSaleChanceName;
-	}*/
-
 }
