@@ -137,7 +137,7 @@
 		$("#dialog").dialog("open").dialog("setTitle","添加信息");
 		url = "${ctx}/saleChance/add.action";
 		$('#form').form("clear");
-		var values = '${user.name}';
+		var values = '${backuser.name}';
 		$("#createManId").﻿﻿textbox('setValue',values);
 		$("#createTimeId").﻿﻿textbox('setValue',getCurrentDateTime());
 		
@@ -253,7 +253,7 @@
 				</tr>
 				<tr>
 					<td>创建人：</td>
-					<td><input type="text" id="createManId" name="createMan"  value="${backuser.name}" class="easyui-textbox" required="true"/><font color="red">*</font></td>
+					<td><input type="text" id="createManId" name="createMan"  class="easyui-textbox" required="true"/><font color="red">*</font></td>
 					<td>创建时间：</td>
 					<td>
 					<input  id="createTimeId" name="createTime"  type= "text" class= "easyui-datebox" required ="required"/>
