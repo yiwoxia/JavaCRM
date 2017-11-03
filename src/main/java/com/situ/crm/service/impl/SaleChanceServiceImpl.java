@@ -74,6 +74,13 @@ public class SaleChanceServiceImpl implements ISaleChanceService{
 	@Override
 	public ServerResponse add(SaleChance saleChance) {
 		
+		if (saleChance.getAssignMan() == null && saleChance.getAssignMan().trim().equals("")) {
+			saleChance.setStatus(0);
+		}
+		if (saleChance.getAssignMan().equals("--暂不指派--")) {
+			saleChance.setAssignMan(null);
+			saleChance.setStatus(0);
+		}
 		
 		if (saleChanceMapper.insert(saleChance) > 0) {
 			return ServerResponse.createSuccess("添加成功! ");
@@ -84,10 +91,41 @@ public class SaleChanceServiceImpl implements ISaleChanceService{
 	//更新
 	@Override
 	public ServerResponse update(SaleChance saleChance) {
+		saleChance.setStatus(1);
 		if (saleChanceMapper.updateByPrimaryKey(saleChance) > 0) {
 			return ServerResponse.createSuccess("修改成功! ");
 		}
 		return ServerResponse.createError("修改失败!");
+	}
+	//根据Id查询
+	@Override
+	public ServerResponse findById(Integer id) {
+
+		SaleChance saleChance = saleChanceMapper.selectByPrimaryKey(id);
+		if (saleChance != null) {
+			return ServerResponse.createSuccess("查找成功",saleChance);
+		}
+		
+		return ServerResponse.createError("查找失败!");
+	}
+	//根据id查找营销机会
+	@Override
+	public ServerResponse<SaleChance> findSaleChanceById(Integer saleChanceId) {
+		SaleChance saleChance = saleChanceMapper.selectByPrimaryKey(saleChanceId);
+		if (saleChance != null) {
+			return ServerResponse.createError("服务器繁忙，请稍后重试");
+		}
+		return null;
+	}
+	//更新营销机会的开发状态
+	@Override
+	public ServerResponse updateSaleChanceDevResult(SaleChance salechance) {
+		int result = saleChanceMapper.updateByPrimaryKeySelective(salechance);
+		if (result > 0) {
+			return ServerResponse.createError("更改成功");
+		}
+		return ServerResponse.createError("服务器繁忙，请稍后再试");
+
 	}
 
 }

@@ -156,7 +156,7 @@ function openUpdateDialog() {
 						 	valueField: 'roleName',
 						 	textField: 'roleName',
 						 	panelHeight:'auto',
-						 	editable:false  "/>
+						 	editable:true  "/>
 			        用户名：<input type="text" id="name"></input>
 			        真实姓名：<input type="text" id="trueName"></input>
 		 	  <a href="javascript:doSearch();" class="easyui-linkbutton" iconCls="icon-search">搜索</a>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>客户开发计划</title>
 <script type="text/javascript">
 	$(function(){
 		/*展示数据的datagrid表格*/
@@ -38,9 +38,17 @@
 							} else if (value==3) {
 								return "开发失败";
 							}
-				    	}
+				    	}},
 			    
-			    },  
+			    	{field:'aaa',title:'操作 ',width:100,align:'center',
+				    	 formatter:function(value,row,index){
+				    			if (row.devResult==0 || row.devResult==1 || row.devResult==null) {
+									return "<a style='text-decoration: none;' href='javascript:openTab("+row.id+")' >开发中</a>";
+								} else if (row.devResult==2 || row.devResult==3) {
+									return "<a style='text-decoration: none;' href='javascript:openTabShow("+row.id+")' >查看详情</a>";
+								}
+					    	}
+				    }, 
 			]]  
 		});
 		
@@ -180,6 +188,15 @@
 	    var seconds=date.getSeconds();//秒
 	    // 2017-01-01 02:23:06   yyyy-MM-dd hh:mm:ss
 	    return year+"-"+this.formatZero(month)+"-"+this.formatZero(day)+" "+this.formatZero(hours)+":"+this.formatZero(minutes)+":"+this.formatZero(seconds);
+	}
+
+	//只能查看开发信息
+	function openTab(id){
+		window.parent.openTab('查看客户开发计划项','${ctx}/cusDevPlan/index.action?saleChanceId='+id);
+	}
+	/* 打开新的标签页 */
+	function openTabShow(id) {
+		 window.parent.openTab('客户开发计划项','${ctx }/cusDevPlan/index.action?saleChanceId='+id+'&show=true','icon-khkfjh');
 	}
 
 </script>

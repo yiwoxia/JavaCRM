@@ -2,13 +2,15 @@ package com.situ.crm.pojo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class CustomerOrder {
     private Integer id;
 
     private Integer customerId;
 
     private String orderNo;
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date orderDate;
 
     private String address;

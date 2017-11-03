@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>营销机会管理</title>
 <script type="text/javascript">
 	$(function(){
 		/*展示数据的datagrid表格*/
@@ -146,7 +146,7 @@
 	function openUpdateDialog() {
 		var selections = $("#datagrid").datagrid("getSelections");
 		if(selections.length == 0) {
-			$.messager.alert("系统提示", "请选择要删除的数据");
+			$.messager.alert("系统提示", "请选择要的数据");
 			return;
 		}
 		var row = selections[0];
@@ -186,7 +186,7 @@
 	    var hours=date.getHours();//小时
 	    var minutes=date.getMinutes();//分钟
 	    var seconds=date.getSeconds();//秒
-	    // 2017-01-01 02:23:06   yyyy-MM-dd hh:mm:ss
+	    // 2017-01-01 02:23:06   yyyy-MM-dd hh:mm:ss  formatZero初始化为零
 	    return year+"-"+this.formatZero(month)+"-"+this.formatZero(day)+" "+this.formatZero(hours)+":"+this.formatZero(minutes)+":"+this.formatZero(seconds);
 	}
 

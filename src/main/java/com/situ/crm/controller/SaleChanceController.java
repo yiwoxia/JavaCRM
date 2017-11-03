@@ -74,4 +74,10 @@ public class SaleChanceController {
 	public List<User> findAssignMan() {
 		return userService.findAssignMan();
 	}
+	
+	@RequestMapping("findById")
+	@ResponseBody
+	public ServerResponse findById(Integer id){
+		return saleChanceService.findById(id);
+	}
 }

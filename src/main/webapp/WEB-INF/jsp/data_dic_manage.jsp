@@ -147,7 +147,7 @@
 					 	valueField: 'dataDicName',
 					 	textField: 'dataDicName',
 					 	panelHeight:'auto',
-					 	editable:false  "/>
+					 	editable:true  "/>
 		       数据字典值：<input type="text" id="dataDicValue"></input>
 		  <a href="javascript:doSearch();" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
 		</div>
