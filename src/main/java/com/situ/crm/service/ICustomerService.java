@@ -6,6 +6,7 @@ import java.util.List;
 import com.situ.crm.common.EasyUIDataGrideResult;
 import com.situ.crm.common.ServerResponse;
 import com.situ.crm.pojo.Customer;
+import com.situ.crm.vo.CustomerContribute;
 
 public interface ICustomerService {
 	/**
@@ -51,6 +52,21 @@ public interface ICustomerService {
 	 * quartz定时任务
 	 */
 	void checkCustomerLoss();
+	/**
+	 * 查询客户订单总额
+	 * @param page
+	 * @param rows
+	 * @param customerContribute
+	 * @return
+	 */
+	EasyUIDataGrideResult findCustomerContribute(Integer page, Integer rows, CustomerContribute customerContribute);
+	
+	ServerResponse findCustomerConstitute();
+	/**
+	 * 客户服务查询 
+	 * 
+	 * */
+	ServerResponse findService();
 
 
 

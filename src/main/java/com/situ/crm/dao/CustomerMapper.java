@@ -2,7 +2,12 @@ package com.situ.crm.dao;
 
 import com.situ.crm.pojo.Customer;
 import com.situ.crm.pojo.CustomerExample;
+import com.situ.crm.vo.CustomerConstitute;
+import com.situ.crm.vo.CustomerContribute;
+
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface CustomerMapper {
@@ -29,4 +34,8 @@ public interface CustomerMapper {
     int updateByPrimaryKey(Customer record);
     /*在customer表中查找已经流失的客户*/
 	List<Customer> findLossCustomer();
+	/*查询客户订单总额*/
+	List<CustomerContribute> findCustomerContribute(Map<String, Object> map);
+	/*客户构成分析 */
+	List<CustomerConstitute> findCustomerConstitute();
 }

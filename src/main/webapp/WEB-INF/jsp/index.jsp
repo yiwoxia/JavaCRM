@@ -247,19 +247,19 @@
 			</div>
 			<div title="统计报表" data-options="iconCls:'icon-tjbb'"
 				style="padding: 10px">
-				<a href="javascript:openTab('客户贡献分析','khgxfx.jsp','icon-khgxfx')"
+				<a href="javascript:openTab('客户贡献分析','${ctx}/customer/indexContribute.action','icon-khgxfx')"
 					class="easyui-linkbutton"
 					data-options="plain:true,iconCls:'icon-khgxfx'"
 					style="width: 150px;">客户贡献分析</a> <a
-					href="javascript:openTab('客户构成分析','khgcfx.jsp','icon-khgcfx')"
+					href="javascript:openTab('客户构成分析','${ctx}/customer/indexConstitute.action','icon-khgcfx')"
 					class="easyui-linkbutton"
 					data-options="plain:true,iconCls:'icon-khgcfx'"
 					style="width: 150px;">客户构成分析</a> <a
-					href="javascript:openTab('客户服务分析','khfwfx.jsp','icon-khfwfx')"
+					href="javascript:openTab('客户服务分析','${ctx}/customer/indexService.action','icon-khfwfx')"
 					class="easyui-linkbutton"
 					data-options="plain:true,iconCls:'icon-khfwfx'"
 					style="width: 150px;">客户服务分析</a> <a
-					href="javascript:openTab('客户流失分析','khlsfx.jsp','icon-khlsfx')"
+					href="javascript:openTab('客户流失分析','${ctx}/customer/indexLose.action','icon-khlsfx')"
 					class="easyui-linkbutton"
 					data-options="plain:true,iconCls:'icon-khlsfx'"
 					style="width: 150px;">客户流失分析</a>

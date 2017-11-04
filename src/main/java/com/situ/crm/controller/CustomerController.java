@@ -11,6 +11,7 @@ import com.situ.crm.common.EasyUIDataGrideResult;
 import com.situ.crm.common.ServerResponse;
 import com.situ.crm.pojo.Customer;
 import com.situ.crm.service.ICustomerService;
+import com.situ.crm.vo.CustomerContribute;
 
 @Controller
 @RequestMapping("/customer")
@@ -23,7 +24,46 @@ public class CustomerController {
 	private String index(){
 		return "customer_manager";
 	}
+	//客户贡献
+	@RequestMapping("/indexContribute")
+	public String indexContribute() {
+		return "customer_kf_contribute_gx";
+	}
+	//客户构成
+	@RequestMapping("/indexConstitute")
+	public String indexConstitute() {
+		return "customer_kf_constitute_gc";
+	}
+	//客户服务
+	@RequestMapping("/indexService")
+	public String indexService() {
+		return "customer_kf_service";
+	}
+	//客户流失
+	@RequestMapping("/indexLose")
+	public String indexLose() {
+		return "customer_kf_lose";
+	}
 	
+	//查询客户订单总额
+	@RequestMapping("findCustomerContribute")
+	@ResponseBody
+	public EasyUIDataGrideResult findCustomerContribute(Integer page, Integer rows,CustomerContribute customerContribute){
+		return customerService.findCustomerContribute(page, rows, customerContribute);
+	}
+	//客户构成
+	@RequestMapping("/findCustomerConstitute")
+	@ResponseBody
+	public ServerResponse findCustomerConstitute(){
+		return customerService.findCustomerConstitute();
+	}
+	//客户服务
+	@RequestMapping("/findService")
+	@ResponseBody
+	public ServerResponse findService(){
+		return customerService.findService();
+	}
+	//查询所有
 	@RequestMapping("/findAll")
 	@ResponseBody
 	private EasyUIDataGrideResult findAll(Integer page,Integer rows,Customer customer){

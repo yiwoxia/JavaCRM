@@ -50,6 +50,36 @@ public class CustomerLossServiceImpl implements ICustomerLossService {
 		result.setRows(customerLossList);
 		return result;
 	}
+	
+	// 根据分页信息返回所有数据
+		@Override
+		public EasyUIDataGrideResult findAllLoss(Integer page,Integer rows,CustomerLoss customerLoss) {
+			EasyUIDataGrideResult result = new EasyUIDataGrideResult();
+			CustomerLossExample customerLossExample = new CustomerLossExample();
+			//1.设置分页
+			PageHelper.startPage(page,rows);
+			//2.执行查询
+			//rows(分页之后的数据)
+			Criteria createCriteria = customerLossExample.createCriteria();
+			String customerLossName = customerLoss.getCustomerName();
+			if(StringUtils.isNotEmpty(customerLoss.getCustomerName())){
+				createCriteria.andCustomerNameLike(Util.formatLike(customerLoss.getCustomerName()));
+			}
+			if(StringUtils.isNotEmpty(customerLoss.getCustomerManager())){
+				createCriteria.andCustomerManagerLike(Util.formatLike(customerLoss.getCustomerManager()));
+			}
+			if (null != customerLoss.getStatus()) {
+				createCriteria.andStatusEqualTo(customerLoss.getStatus());
+			}
+			createCriteria.andStatusEqualTo(1);
+			List<CustomerLoss> customerLossList = customerLossMapper.selectByExample(customerLossExample);
+			//4,取分页后的结果
+			PageInfo<CustomerLoss> pageInfo = new PageInfo<>(customerLossList);
+			int total = (int)pageInfo.getTotal();
+			result.setTotal(total);
+			result.setRows(customerLossList);
+			return result;
+		}
 	/**
 	 * 删除
 	 */

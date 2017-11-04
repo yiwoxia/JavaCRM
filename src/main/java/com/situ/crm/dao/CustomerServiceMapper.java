@@ -2,6 +2,8 @@ package com.situ.crm.dao;
 
 import com.situ.crm.pojo.CustomerService;
 import com.situ.crm.pojo.CustomerServiceExample;
+import com.situ.crm.vo.CustomerServiceAnalysis;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +29,6 @@ public interface CustomerServiceMapper {
     int updateByPrimaryKeySelective(CustomerService record);
 
     int updateByPrimaryKey(CustomerService record);
+    /*客户服务查询 */
+	List<CustomerServiceAnalysis> findService();
 }

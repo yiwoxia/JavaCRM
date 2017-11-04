@@ -29,6 +29,13 @@ public class CustomerLossController {
 	private EasyUIDataGrideResult findAll(Integer page,Integer rows,CustomerLoss customerLoss){
 		return customerLossService.findAll(page,rows,customerLoss);
 	}
+	
+
+	@RequestMapping("/findAllLoss")
+	@ResponseBody
+	private EasyUIDataGrideResult findAllLoss(Integer page,Integer rows,CustomerLoss customerLoss){
+		return customerLossService.findAllLoss(page,rows,customerLoss);
+	}
 
 	//删除
 	@RequestMapping("/delete")
