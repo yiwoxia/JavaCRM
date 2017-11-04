@@ -27,4 +27,6 @@ public interface CustomerMapper {
     int updateByPrimaryKeySelective(Customer record);
 
     int updateByPrimaryKey(Customer record);
+    /*在customer表中查找已经流失的客户*/
+	List<Customer> findLossCustomer();
 }

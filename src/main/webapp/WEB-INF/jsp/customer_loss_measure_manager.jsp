@@ -22,25 +22,6 @@ $(function() {
 			}
 		},"json"		
 	);
-	/*展示数据的datagrid表格*/
-/* 	$("#datagrid").edatagrid({
-		url:'${ctx}/customerLossMeasure/findAll.action?lossId=${param.lossId}',//只查询已分配的咨询师
-		saveUrl:'${ctx}/customerLossMeasure/add.action?lossId=${param.lossId}',//添加
-		updateUrl:'${ctx}/customerLossMeasure/update.action?lossId=${param.lossId}',//更新
-		destroyUrl:'${ctx}/customerLossMeasure/deleteById.action',//删除
-		method:'get',
-		fit:true,
-		singleSelect:false,
-		toolbar:'#toolbar',
-		rownumbers:true,
-		fitColumns:true,
-		pagination:true,
-		columns:[[    
-		     {field:'cb',checkbox:true,align:'center'},    
-		     {field:'id',title:'编号',width:80,align:'center'},    
-		     {field:'measure',title:'暂缓措施',width:100,align:'center' ,editor:{type:'validatebox',options:{required:true}}},    
-		]]  
-	}); */
 	
 	
 	$("#datagrid").edatagrid({

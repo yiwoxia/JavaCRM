@@ -47,6 +47,10 @@ public interface ICustomerService {
 	 * @return ServerResponse<Customer>
 	 */
 	ServerResponse<Customer> findCustomerById(Integer customerId);
+	/**
+	 * quartz定时任务
+	 */
+	void checkCustomerLoss();
 
 
 

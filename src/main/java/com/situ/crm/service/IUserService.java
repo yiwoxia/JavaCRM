@@ -44,6 +44,12 @@ public interface IUserService {
 	 * @return LinkedList<SaleChance>
 	 */
 	List<User> findAssignMan();
+	/**
+	 * 销售主管
+	 * @return LinkedList<SaleChance>
+	 */
+	List<User> finddisposeMan();
+	
 	
 
 

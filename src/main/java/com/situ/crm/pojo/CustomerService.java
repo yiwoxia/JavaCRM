@@ -2,6 +2,8 @@ package com.situ.crm.pojo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class CustomerService {
     private Integer id;
 
@@ -16,11 +18,11 @@ public class CustomerService {
     private String serviceRequest;
 
     private String createPeople;
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date createTime;
 
     private String assigner;
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date assignTime;
 
     private String serviceDeal;

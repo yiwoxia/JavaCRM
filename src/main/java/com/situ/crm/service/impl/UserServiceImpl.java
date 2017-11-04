@@ -105,6 +105,21 @@ public class UserServiceImpl implements IUserService {
 		list.add(0, user);
 		return list;
 	}
+	
+	/**
+	 * 销售主管
+	 */
+	@Override
+	public List<User> finddisposeMan() {
+		UserExample example = new UserExample();
+		Criteria createCriteria = example.createCriteria();
+		createCriteria.andRoleNameEqualTo("销售主管");
+		List<User> list = userMapper.selectByExample(example);
+		User user = new User();
+		user.setRoleName(null);
+		list.add(0, user);
+		return list;
+	}
 }
 
 
