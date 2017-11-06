@@ -17,77 +17,82 @@ $(function(){
 $.post('${ctx}/customer/findService.action',
 		function(result){
 			if(result.status == Util.SUCCESS) {
-				var xAxisData=new Array();
-					var seriesData=new Array();
-					var data = result.data;
+				var serviceType=new Array();
+				var num=new Array();
+				var data = result.data;
+				for(var i=0;i<data.length;i++){
+					serviceType.push(data[i].serviceType);
+					num.push(data[i].num);
+				}
 		        	// 填入数据
-					option = {
-						    backgroundColor: '#2c343c',
-
-						    title: {
-						        text: '客户服务分析',
-						        left: 'center',
-						        top: 20,
-						        textStyle: {
-						            color: '#ccc'
-						        }
+				option = {
+						    title : {
+						        text: '客户分析图',
+						        subtext: '纯属虚构',
+						        x:'center'
 						    },
-
 						    tooltip : {
 						        trigger: 'item',
 						        formatter: "{a} <br/>{b} : {c} ({d}%)"
 						    },
-
-						    visualMap: {
-						        show: false,
-						        min: 80,
-						        max: 600,
-						        inRange: {
-						            colorLightness: [0, 1]
+						    legend: {
+						        x : 'center',
+						        y : 'bottom',
+						    },
+						    toolbox: {
+						        show : true,
+						        feature : {
+						            mark : {show: true},
+						            dataView : {show: true, readOnly: false},
+						            magicType : {
+						                show: true,
+						                type: ['pie', 'funnel']
+						            },
+						            restore : {show: true},
+						            saveAsImage : {show: true}
 						        }
 						    },
+						    calculable : true,
 						    series : [
 						        {
-						            name:'客户服务',
+						            name:'半径模式',
 						            type:'pie',
-						            radius : '55%',
-						            center: ['50%', '50%'],
-						            data:[
-							                {value:data[0].num, name:data[0].serviceType},
-							                {value:data[1].num, name:data[1].serviceType},
-							                {value:data[2].num, name:data[2].serviceType},
-						            ].sort(function (a, b) { return a.value - b.value; }),
-						            roseType: 'radius',
+						            radius : [20, 110],
+						            center : ['25%', '50%'],
+						            roseType : 'radius',
 						            label: {
 						                normal: {
-						                    textStyle: {
-						                        color: 'rgba(255, 255, 255, 0.3)'
-						                    }
+						                    show: false
+						                },
+						                emphasis: {
+						                    show: true
 						                }
 						            },
-						            labelLine: {
+						            lableLine: {
 						                normal: {
-						                    lineStyle: {
-						                        color: 'rgba(255, 255, 255, 0.3)'
-						                    },
-						                    smooth: 0.2,
-						                    length: 10,
-						                    length2: 20
+						                    show: false
+						                },
+						                emphasis: {
+						                    show: true
 						                }
 						            },
-						            itemStyle: {
-						                normal: {
-						                    color: '#c23531',
-						                    shadowBlur: 200,
-						                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-						                }
-						            },
-
-						            animationType: 'scale',
-						            animationEasing: 'elasticOut',
-						            animationDelay: function (idx) {
-						                return Math.random() * 200;
-						            }
+						            data:[
+										{value:num[0], name:serviceType[0]},
+										{value:num[1], name:serviceType[1]},
+										{value:num[2], name:serviceType[2]}
+						            ]
+						        },
+						        {
+						            name:'面积模式',
+						            type:'pie',
+						            radius : [30, 110],
+						            center : ['75%', '50%'],
+						            roseType : 'area',
+						            data:[
+										{value:num[0], name:serviceType[0]},
+										{value:num[1], name:serviceType[1]},
+										{value:num[2], name:serviceType[2]}
+						            ]
 						        }
 						    ]
 						};
