@@ -1,4 +1,4 @@
-package com.situ.test;
+package com.situ.crm.test;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
